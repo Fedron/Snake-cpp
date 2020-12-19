@@ -1,6 +1,16 @@
 #include <iostream>
+#include "Game.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Game* game = new Game();
+    for (int x = 0; x < 90; x++) {
+        for (int y = 5; y < 21; y++) {
+            game->Draw(x, y, L'#', Colours::FG_BLUE);
+        }
+    }
+
+    while (true) {
+        game->Render();
+    }
 }

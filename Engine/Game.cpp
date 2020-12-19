@@ -1,25 +1,21 @@
 #include "Game.h"
 
-Game::Game()
+void Game::InitializeConsole(std::wstring windowTitle, int width, int height)
 {
-	console = new Console("Snake++");
-}
-
-Game::~Game()
-{
+	Console::GetInstance().Initialize(windowTitle, width, height);
 }
 
 void Game::Draw(int x, int y, short value)
 {
-	console->Draw(x, y, value);
+	Console::GetInstance().Draw(x, y, value);
 }
 
 void Game::Draw(int x, int y, short value, short colour)
 {
-	console->Draw(x, y, value, colour);
+	Console::GetInstance().Draw(x, y, value, colour);
 }
 
 void Game::Render()
 {
-	console->Render();
+	Console::GetInstance().Render();
 }

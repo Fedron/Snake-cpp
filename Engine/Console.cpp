@@ -1,9 +1,16 @@
 #include "Console.h"
 
-Console::Console(std::string title)
+Console::~Console()
 {
-	width = 120;
-	height = 30;
+	delete[] screen;
+	CloseHandle(hConsole);
+}
+
+void Console::Initialize(std::wstring windowTitle, int width, int height)
+{
+	this->width = width;
+	this->height = height;
+	this->windowTitle = windowTitle;
 
 	// Initialize handles
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -11,7 +18,7 @@ Console::Console(std::string title)
 
 	windowRect = { 0, 0, 1, 1 };
 	SetConsoleWindowInfo(hConsole, TRUE, &windowRect);
-	
+
 	// Initialize the screen buffer and console window
 	COORD coord = { (short)width, (short)height };
 	SetConsoleScreenBufferSize(hConsole, coord);
@@ -24,10 +31,14 @@ Console::Console(std::string title)
 	memset(screen, 0, sizeof(CHAR_INFO) * width * height);
 }
 
-Console::~Console()
+const int Console::GetWidth() const
 {
-	delete[] screen;
-	CloseHandle(hConsole);
+	return width;
+}
+
+const int Console::GetHeight() const
+{
+	return height;
 }
 
 void Console::Draw(int x, int y, short value)
@@ -45,7 +56,7 @@ void Console::Draw(int x, int y, short value, short colour)
 
 void Console::Render()
 {
-	SetConsoleTitle(TEXT("Snake++"));
+	SetConsoleTitle(windowTitle.c_str());
 	WriteConsoleOutput(
 		hConsole, screen,
 		{ (short)width, (short)height }, { 0, 0 },

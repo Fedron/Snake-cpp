@@ -6,13 +6,10 @@
 class Game
 {
 public:
-	Game();
-	virtual ~Game();
+	void InitializeConsole(std::wstring windowTitle, int width, int height);
 
+	// Drawing
 	void Draw(int x, int y, short value);
 	void Draw(int x, int y, short value, short colour);
 	void Render();
-
-private:
-	Console* console;
 };

@@ -13,16 +13,33 @@
 class Console
 {
 public:
-	Console(std::string title);
-	virtual ~Console();
+	Console(Console const&) = delete;
+	void operator=(Console const&) = delete;
 
+	// Initializers
+	void Initialize(std::wstring windowTitle, int width, int height);
+
+	// Getters
+	static Console& GetInstance()
+	{
+		static Console instance;
+		return instance;
+	}
+	const int GetWidth() const;
+	const int GetHeight() const;
+
+	// Drawing
 	void Draw(int x, int y, short value);
 	void Draw(int x, int y, short value, short colour);
 	void Render();
 
 private:
+	Console() {}
+	~Console();
+
 	int width;
 	int height;
+	std::wstring windowTitle;
 
 	CHAR_INFO* screen;
 	HANDLE hConsole;

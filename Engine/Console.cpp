@@ -43,6 +43,7 @@ const int Console::GetHeight() const
 
 const bool Console::IsKeyPressed(const int key)
 {
+	// TODO: Implement key debouncing
 	int state = GetAsyncKeyState(key);
 	return state != 0;
 }

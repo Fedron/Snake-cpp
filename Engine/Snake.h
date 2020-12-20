@@ -22,6 +22,9 @@ private:
 public:
 	Snake(Location startLocation, int startSize);
 
+	Location GetHeadLocation() const;
+	const bool IsCollidingWithSelf() const;
+	void Grow();
 	void Move(Location direction);
 	void Draw() const;
 

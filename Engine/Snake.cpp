@@ -9,6 +9,28 @@ Snake::Snake(Location startLocation, int startSize)
 	}
 }
 
+Location Snake::GetHeadLocation() const
+{
+	return segments.front().GetLocation();
+}
+
+const bool Snake::IsCollidingWithSelf() const
+{
+	Location head = GetHeadLocation();
+	for (auto segment = segments.begin() + 1; segment < segments.end(); segment++) {
+		if (segment->GetLocation() == head) return true;
+	}
+
+	return false;
+}
+
+void Snake::Grow()
+{
+	segments.emplace_back(
+		segments.back()
+	);
+}
+
 void Snake::Move(Location direction)
 {
 	// Ensure snake can't back onto itself

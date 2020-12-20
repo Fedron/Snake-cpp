@@ -25,6 +25,14 @@ PlayingGrid::~PlayingGrid()
 	delete[] grid;
 }
 
+void PlayingGrid::MoveSnake(Location direction)
+{
+	if (abs(direction.x) == 1 || direction.x == 0 ||
+		abs(direction.y) == 1 || direction.y == 0) {
+		snake->Move(direction);
+	}
+}
+
 void PlayingGrid::Draw() const
 {
 	// Draw the walls

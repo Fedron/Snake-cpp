@@ -41,6 +41,12 @@ const int Console::GetHeight() const
 	return height;
 }
 
+const bool Console::IsKeyPressed(const int key)
+{
+	int state = GetAsyncKeyState(key);
+	return state != 0;
+}
+
 void Console::Draw(int x, int y, short value)
 {
 	Draw(x, y, value, Colours::FG_WHITE);
@@ -62,4 +68,6 @@ void Console::Render()
 		{ (short)width, (short)height }, { 0, 0 },
 		&windowRect
 	);
+
+	memset(screen, 0, sizeof(CHAR_INFO) * width * height);
 }

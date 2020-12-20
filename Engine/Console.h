@@ -9,6 +9,7 @@
 #define _UNICODE
 #endif
 #include <Windows.h>
+#include <WinUser.h>
 
 class Console
 {
@@ -27,6 +28,9 @@ public:
 	}
 	const int GetWidth() const;
 	const int GetHeight() const;
+
+	// Inputs
+	const bool IsKeyPressed(const int key);
 
 	// Drawing
 	void Draw(int x, int y, short value);

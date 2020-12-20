@@ -7,6 +7,7 @@ public:
 	PlayingGrid();
 	~PlayingGrid();
 
+	void MoveSnake(Location direction);
 	void Draw() const;
 
 private:

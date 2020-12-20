@@ -10,6 +10,8 @@ private:
 	class Segment {
 	public:
 		Segment(Location location);
+		Location GetLocation() const;
+		void Move(Location direction);
 		void Follow(Segment& next);
 		void Draw() const;
 
@@ -20,6 +22,7 @@ private:
 public:
 	Snake(Location startLocation, int startSize);
 
+	void Move(Location direction);
 	void Draw() const;
 
 private:

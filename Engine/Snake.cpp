@@ -3,8 +3,14 @@
 Snake::Snake(Location startLocation, int startSize)
 {
 	for (int i = 0; i < startSize; i++) {
+		short colour = i % 2 == 0 ? Colours::FG_GREEN : Colours::FG_DARK_GREEN;
+		if (i == 0)
+			colour = Colours::FG_YELLOW;
 		segments.emplace_back(
-			Location{ startLocation.x - i, startLocation.y }
+			Segment(
+				Location{ startLocation.x - i, startLocation.y },
+				colour
+			)
 		);
 	}
 }
@@ -27,7 +33,10 @@ const bool Snake::IsCollidingWithSelf() const
 void Snake::Grow()
 {
 	segments.emplace_back(
-		segments.back()
+		Segment(
+			segments.back().GetLocation(),
+			segments.size() % 2 == 0 ? Colours::FG_GREEN : Colours::FG_DARK_GREEN
+		)
 	);
 }
 
@@ -52,8 +61,8 @@ void Snake::Draw() const
 	}
 }
 
-Snake::Segment::Segment(Location location) :
-	location(location)
+Snake::Segment::Segment(Location location, short colour) :
+	location(location), colour(colour)
 {
 }
 
@@ -76,5 +85,5 @@ void Snake::Segment::Follow(Segment& next)
 void Snake::Segment::Draw() const
 {
 	Console::GetInstance().
-		Draw(location.x, location.y, L'\u2588', Colours::FG_WHITE);
+		Draw(location.x, location.y, L'\u2588', colour);
 }

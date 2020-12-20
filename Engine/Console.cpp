@@ -18,6 +18,7 @@ void Console::Initialize(std::wstring windowTitle, int width, int height)
 
 	windowRect = { 0, 0, 1, 1 };
 	SetConsoleWindowInfo(hConsole, TRUE, &windowRect);
+	SetConsoleMode(hConsoleInput, ENABLE_EXTENDED_FLAGS | ~ENABLE_QUICK_EDIT_MODE);
 
 	// Initialize the screen buffer and console window
 	COORD coord = { (short)width, (short)height };
@@ -58,6 +59,18 @@ void Console::Draw(int x, int y, short value, short colour)
 	if (x >= 0 && x < width && y >= 0 && y <= height) {
 		screen[y * width + x].Char.UnicodeChar = value;
 		screen[y * width + x].Attributes = colour;
+	}
+}
+
+void Console::Draw(int x, int y, std::wstring text)
+{
+	Draw(x, y, text, Colours::FG_WHITE);
+}
+
+void Console::Draw(int x, int y, std::wstring text, short colour)
+{
+	for (int i = 0; i < text.size(); i++) {
+		Draw(x + i, y, text[i], colour);
 	}
 }
 

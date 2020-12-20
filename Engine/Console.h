@@ -35,6 +35,8 @@ public:
 	// Drawing
 	void Draw(int x, int y, short value);
 	void Draw(int x, int y, short value, short colour);
+	void Draw(int x, int y, std::wstring text);
+	void Draw(int x, int y, std::wstring text, short colour);
 	void Render();
 
 private:

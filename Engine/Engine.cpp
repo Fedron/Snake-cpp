@@ -45,5 +45,24 @@ int main()
         // Drawing
         grid->Draw();
         game->Render();
+
+        wchar_t score[10];
+        swprintf_s(score, L"Score: %d", grid->GetScore());
+        console.Draw(console.GetWidth() - 15, console.GetHeight() / 2,
+            score);
+    }
+
+    wchar_t scoreGameOver[20];
+    swprintf_s(scoreGameOver, L"You scored: %d!", grid->GetScore());
+    while (true) {
+        Console& console = Console::GetInstance();
+        console.Draw(
+            console.GetWidth() / 2 - 4, console.GetHeight() / 2 - 1,
+            L"Game Over!");
+        console.Draw(
+            console.GetWidth() / 2 - 6, console.GetHeight() / 2,
+            scoreGameOver);
+
+        console.Render();
     }
 }

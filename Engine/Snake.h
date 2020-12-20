@@ -9,7 +9,7 @@ class Snake
 private:
 	class Segment {
 	public:
-		Segment(Location location);
+		Segment(Location location, short colour);
 		Location GetLocation() const;
 		void Move(Location direction);
 		void Follow(Segment& next);
@@ -17,6 +17,7 @@ private:
 
 	private:
 		Location location;
+		short colour;
 	};
 
 public:

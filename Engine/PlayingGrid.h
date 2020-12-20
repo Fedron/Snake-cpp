@@ -13,6 +13,10 @@ public:
 	const bool IsGameOver() const {
 		return gameOver;
 	}
+	const int GetScore() const {
+		return score;
+	}
+
 	void MoveSnake(Location direction);
 	void CheckCollisions();
 	void Draw() const;
@@ -26,4 +30,6 @@ private:
 
 	Snake* snake;
 	Location apple;
+
+	int score;
 };

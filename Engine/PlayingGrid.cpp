@@ -26,6 +26,8 @@ PlayingGrid::PlayingGrid()
 		(rand() % (gridWidth - 2)) + 1,
 		(rand() % (gridHeight - 2)) + 1
 	};
+
+	score = 0;
 }
 
 PlayingGrid::~PlayingGrid()
@@ -52,6 +54,8 @@ void PlayingGrid::CheckCollisions()
 			(rand() % (gridWidth - 2)) + 1,
 			(rand() % (gridHeight - 2)) + 1
 		};
+
+		score++;
 	}
 
 	// Snake collisions with itself and the walls
